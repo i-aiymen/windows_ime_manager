@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:windows_ime_manager/windows_ime_manager.dart';
 
@@ -16,35 +16,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _windowsImeManagerPlugin = WindowsImeManager();
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    setLanguageIme('Japanese', 'japaneseHiraganaIme');
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
+  Future<void> setLanguageIme(String language, String type) async {
     try {
-      platformVersion =
-          await _windowsImeManagerPlugin.setJapaneseIme() ?? 'Unknown platform version';
+      await _windowsImeManagerPlugin.setLanguageIme(language, type);
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      debugPrint('Failed to set language IME.');
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -52,10 +37,65 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Windows IME Manager Example'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 500),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Focus(
+                  onFocusChange: (hasFocus) {
+                    if (hasFocus) {
+                      setLanguageIme(
+                          'Japanese', 'japaneseHalfWidthKatakanaIme');
+                    }
+                  },
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Japanese Half-Width Katakana',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Focus(
+                  onFocusChange: (hasFocus) {
+                    if (hasFocus) {
+                      setLanguageIme(
+                          'Japanese', 'japaneseFullWidthKatakanaIme');
+                    }
+                  },
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Japanese Full-Width Katakana',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Focus(
+                  onFocusChange: (hasFocus) {
+                    if (hasFocus) {
+                      setLanguageIme('Japanese', 'japaneseHiraganaIme');
+                    }
+                  },
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Japanese Hiragana IME',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

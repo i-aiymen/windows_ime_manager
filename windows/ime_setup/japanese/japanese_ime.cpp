@@ -23,15 +23,15 @@ bool setupJapaneseIme(const std::string &methodName)
     {
         conversionMode = IME_CMODE_NATIVE | IME_CMODE_FULLSHAPE;
     }
-    else if (methodName == "japaneseFullWidthKatakana")
+    else if (methodName == "japaneseFullWidthKatakanaIme")
     {
         conversionMode = IME_CMODE_NATIVE | IME_CMODE_KATAKANA | IME_CMODE_FULLSHAPE;
     }
-    else if (methodName == "japaneseHalfWidthKatakana")
+    else if (methodName == "japaneseHalfWidthKatakanaIme")
     {
         conversionMode = IME_CMODE_NATIVE | IME_CMODE_KATAKANA;
     }
-    else if (methodName == "japaneseHalfWidthAlphanumeric")
+    else if (methodName == "japaneseHalfWidthAlphanumericIme")
     {
         conversionMode = IME_CMODE_ALPHANUMERIC;
     }
