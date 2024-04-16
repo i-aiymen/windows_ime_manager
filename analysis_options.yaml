@@ -1,4 +1,10 @@
 include: package:flutter_lints/flutter.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+linter:
+  rules:
+    - prefer_single_quotes
+    - sort_pub_dependencies
+    - avoid_print
+    - avoid_unnecessary_containers
+    - sized_box_for_whitespace
+    - avoid_empty_else
