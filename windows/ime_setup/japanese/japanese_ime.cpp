@@ -1,6 +1,6 @@
 #include "japanese_ime.h"
 
-bool SetupJapaneseIme(const std::string &methodName)
+bool setupJapaneseIme(const std::string &methodName)
 {
     HKL japaneseIME = LoadKeyboardLayout(TEXT("00000411"), KLF_ACTIVATE);
     if (japaneseIME == NULL)

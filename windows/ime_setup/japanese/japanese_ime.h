@@ -4,4 +4,4 @@
 #include <iostream>
 #include <string>
 
-bool SetupJapaneseIme(const std::string &methodName);
+bool setupJapaneseIme(const std::string &methodName);
