@@ -13,47 +13,73 @@
 #include <memory>
 #include <sstream>
 
-namespace windows_ime_manager {
+#pragma comment(lib, "imm32.lib")
+#pragma comment(lib, "user32.lib")
 
-// static
-void WindowsImeManagerPlugin::RegisterWithRegistrar(
-    flutter::PluginRegistrarWindows *registrar) {
-  auto channel =
-      std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "windows_ime_manager",
-          &flutter::StandardMethodCodec::GetInstance());
+namespace windows_ime_manager
+{
 
-  auto plugin = std::make_unique<WindowsImeManagerPlugin>();
+  // static
+  void WindowsImeManagerPlugin::RegisterWithRegistrar(
+      flutter::PluginRegistrarWindows *registrar)
+  {
+    auto channel =
+        std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
+            registrar->messenger(), "windows_ime_manager",
+            &flutter::StandardMethodCodec::GetInstance());
 
-  channel->SetMethodCallHandler(
-      [plugin_pointer = plugin.get()](const auto &call, auto result) {
-        plugin_pointer->HandleMethodCall(call, std::move(result));
-      });
+    auto plugin = std::make_unique<WindowsImeManagerPlugin>();
 
-  registrar->AddPlugin(std::move(plugin));
-}
+    channel->SetMethodCallHandler(
+        [plugin_pointer = plugin.get()](const auto &call, auto result)
+        {
+          plugin_pointer->HandleMethodCall(call, std::move(result));
+        });
 
-WindowsImeManagerPlugin::WindowsImeManagerPlugin() {}
-
-WindowsImeManagerPlugin::~WindowsImeManagerPlugin() {}
-
-void WindowsImeManagerPlugin::HandleMethodCall(
-    const flutter::MethodCall<flutter::EncodableValue> &method_call,
-    std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-  if (method_call.method_name().compare("getPlatformVersion") == 0) {
-    std::ostringstream version_stream;
-    version_stream << "Windows ";
-    if (IsWindows10OrGreater()) {
-      version_stream << "10+";
-    } else if (IsWindows8OrGreater()) {
-      version_stream << "8";
-    } else if (IsWindows7OrGreater()) {
-      version_stream << "7";
-    }
-    result->Success(flutter::EncodableValue(version_stream.str()));
-  } else {
-    result->NotImplemented();
+    registrar->AddPlugin(std::move(plugin));
   }
-}
 
-}  // namespace windows_ime_manager
+  WindowsImeManagerPlugin::WindowsImeManagerPlugin() {}
+
+  WindowsImeManagerPlugin::~WindowsImeManagerPlugin() {}
+
+  void WindowsImeManagerPlugin::HandleMethodCall(
+      const flutter::MethodCall<flutter::EncodableValue> &method_call,
+      std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result)
+  {
+    if (method_call.method_name() == "japaneseImeOn" || method_call.method_name() == "japaneseImeOff")
+    {
+      HKL japaneseIME = LoadKeyboardLayout(TEXT("00000411"), KLF_ACTIVATE);
+
+      if (japaneseIME == NULL)
+      {
+        std::cout << "Failed to load Japanese IME" << std::endl;
+      }
+      else
+      {
+        if (!ActivateKeyboardLayout(japaneseIME, 0))
+        {
+          std::cout << "Failed to activate Japanese IME" << std::endl;
+        }
+      }
+
+      HWND hwnd = GetForegroundWindow();
+      HIMC himc = ImmGetContext(hwnd);
+      if (method_call.method_name() == "japaneseImeOn")
+      {
+        ImmSetOpenStatus(himc, true);
+      }
+      else
+      {
+        ImmSetOpenStatus(himc, false);
+      }
+      ImmReleaseContext(hwnd, himc);
+      result->Success();
+    }
+    else
+    {
+      result->NotImplemented();
+    }
+  }
+
+} // namespace windows_ime_manager
