@@ -6,12 +6,14 @@
 #include <flutter/method_channel.h>
 #include <flutter/plugin_registrar_windows.h>
 #include <flutter/standard_method_codec.h>
-
 #include <memory>
 #include <sstream>
 
+// IME setup files for different languages
 #include "ime_setup/japanese/japanese_ime.h"
+#include "ime_setup/english/english_ime.h"
 
+// IME files
 #pragma comment(lib, "imm32.lib")
 #pragma comment(lib, "user32.lib")
 
@@ -57,9 +59,19 @@ namespace windows_ime_manager
       }
       result->Success();
     }
+    else if (languageName_it != arguments->end() && std::get<std::string>(languageName_it->second) == "English")
+    {
+      if (!setupEnglishIme())
+      {
+        result->Error("IME Setup Failure", "Failed to setup English IME");
+        return;
+      }
+      result->Success();
+    }
     else
     {
-      // Handle other languages or missing 'languageName' here
+      result->Error("Invalid Arguments", "Invalid language name");
+      result->NotImplemented();
     }
   }
 

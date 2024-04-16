@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    setLanguageIme('Japanese', 'japaneseHiraganaIme');
+    setLanguageIme('English', '');
   }
 
   Future<void> setLanguageIme(String language, String type) async {
@@ -48,13 +48,12 @@ class _MyAppState extends State<MyApp> {
                 Focus(
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      setLanguageIme(
-                          'Japanese', 'japaneseHalfWidthKatakanaIme');
+                      setLanguageIme('English', '');
                     }
                   },
                   child: const TextField(
                     decoration: InputDecoration(
-                      labelText: 'Japanese Half-Width Katakana',
+                      labelText: 'English IME',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -63,13 +62,12 @@ class _MyAppState extends State<MyApp> {
                 Focus(
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      setLanguageIme(
-                          'Japanese', 'japaneseFullWidthKatakanaIme');
+                      setLanguageIme('Japanese', 'japaneseHalfWidthKatakanaIme');
                     }
                   },
                   child: const TextField(
                     decoration: InputDecoration(
-                      labelText: 'Japanese Full-Width Katakana',
+                      labelText: 'Japanese Half-Width Katakana IME',
                       border: OutlineInputBorder(),
                     ),
                   ),
