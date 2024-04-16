@@ -20,6 +20,8 @@ set(PLUGIN_NAME "windows_ime_manager_plugin")
 list(APPEND PLUGIN_SOURCES
   "windows_ime_manager_plugin.cpp"
   "windows_ime_manager_plugin.h"
+  "ime_setup/japanese/japanese_ime.cpp"
+  "ime_setup/japanese/japanese_ime.h"
 )
 
 # Define the plugin library target. Its name must not be changed (see comment
