@@ -10,9 +10,12 @@ class MethodChannelWindowsImeManager extends WindowsImeManagerPlatform {
   final methodChannel = const MethodChannel('windows_ime_manager');
 
   @override
-  Future<String?> setJapaneseIme() async {
+  Future<String?> setLanguageIme(String language, String type) async {
     final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
+        await methodChannel.invokeMethod<String>(type, <String, dynamic>{
+      'languageName': language,
+      'methodName': type,
+    });
     return version;
   }
 }

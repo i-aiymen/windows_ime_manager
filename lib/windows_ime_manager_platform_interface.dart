@@ -23,7 +23,7 @@ abstract class WindowsImeManagerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> setJapaneseIme() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<String?> setLanguageIme(String language, String type) {
+    throw UnimplementedError('languageIme() has not been implemented.');
   }
 }
