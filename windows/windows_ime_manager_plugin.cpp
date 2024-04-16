@@ -10,6 +10,8 @@
 #include <memory>
 #include <sstream>
 
+#include "ime_setup/japanese/japanese_ime.h"
+
 #pragma comment(lib, "imm32.lib")
 #pragma comment(lib, "user32.lib")
 
@@ -49,50 +51,12 @@ namespace windows_ime_manager
         method_call.method_name() == "japaneseHalfWidthKatakana" ||
         method_call.method_name() == "japaneseHalfWidthAlphanumeric")
     {
-      HKL japaneseIME = LoadKeyboardLayout(TEXT("00000411"), KLF_ACTIVATE);
-
-      if (japaneseIME == NULL)
+      // Call SetupJapaneseIme and check the return value
+      if (!SetupJapaneseIme(method_call.method_name()))
       {
-        std::cout << "Failed to load Japanese IME" << std::endl;
-        result->Error("IME Load Failure", "Failed to load Japanese IME");
+        result->Error("IME Setup Failure", "Failed to setup Japanese IME");
         return;
       }
-
-      if (!ActivateKeyboardLayout(japaneseIME, 0))
-      {
-        std::cout << "Failed to activate Japanese IME" << std::endl;
-        result->Error("IME Activation Failure", "Failed to activate Japanese IME");
-        return;
-      }
-
-      HWND hwnd = GetForegroundWindow();
-      HIMC himc = ImmGetContext(hwnd);
-
-      DWORD conversionMode = 0, sentenceMode = 0;
-      ImmGetConversionStatus(himc, &conversionMode, &sentenceMode);
-
-      if (method_call.method_name() == "japaneseHiraganaIme")
-      {
-        conversionMode = IME_CMODE_NATIVE | IME_CMODE_FULLSHAPE;
-      }
-      else if (method_call.method_name() == "japaneseFullWidthKatakana")
-      {
-        conversionMode = IME_CMODE_NATIVE | IME_CMODE_KATAKANA | IME_CMODE_FULLSHAPE;
-      }
-      else if (method_call.method_name() == "japaneseHalfWidthKatakana")
-      {
-        conversionMode = IME_CMODE_NATIVE | IME_CMODE_KATAKANA;
-      }
-      else if (method_call.method_name() == "japaneseHalfWidthAlphanumeric")
-      {
-        conversionMode = IME_CMODE_ALPHANUMERIC;
-      }
-
-      sentenceMode = IME_SMODE_NONE;
-
-      ImmSetConversionStatus(himc, conversionMode, sentenceMode);
-      ImmSetOpenStatus(himc, true);
-      ImmReleaseContext(hwnd, himc);
       result->Success();
     }
     else
