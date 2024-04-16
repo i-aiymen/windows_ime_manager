@@ -20,7 +20,6 @@
 namespace windows_ime_manager
 {
 
-  // static
   void WindowsImeManagerPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarWindows *registrar)
   {
