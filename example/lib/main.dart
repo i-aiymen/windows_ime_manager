@@ -21,12 +21,12 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    setLanguageIme('English', '');
+    setLanguageIme(LanguageIme.japaneseHalfWidthAlphanumericIme);
   }
 
-  Future<void> setLanguageIme(String language, String type) async {
+  Future<void> setLanguageIme(LanguageIme languageIme) async {
     try {
-      await _windowsImeManagerPlugin.setLanguageIme(language, type);
+      await _windowsImeManagerPlugin.setLanguageIme(languageIme);
     } on PlatformException {
       debugPrint('Failed to set language IME.');
     }
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                 Focus(
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      setLanguageIme('English', '');
+                      setLanguageIme(LanguageIme.englishIme);
                     }
                   },
                   child: const TextField(
@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
                 Focus(
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      setLanguageIme('Japanese', 'japaneseHalfWidthKatakanaIme');
+                      setLanguageIme(LanguageIme.japaneseHalfWidthKatakanaIme);
                     }
                   },
                   child: const TextField(
@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                 Focus(
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      setLanguageIme('Japanese', 'japaneseHiraganaIme');
+                      setLanguageIme(LanguageIme.japaneseHiraganaIme);
                     }
                   },
                   child: const TextField(

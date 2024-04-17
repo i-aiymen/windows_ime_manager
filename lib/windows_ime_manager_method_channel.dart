@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'windows_ime_manager.dart';
 import 'windows_ime_manager_platform_interface.dart';
 
 /// An implementation of [WindowsImeManagerPlatform] that uses method channels.
@@ -9,13 +10,19 @@ class MethodChannelWindowsImeManager extends WindowsImeManagerPlatform {
   @visibleForTesting
   final methodChannel = const MethodChannel('windows_ime_manager');
 
+  Map languageImeToMethod = {
+    LanguageIme.japaneseHiraganaIme: 'japaneseHiraganaIme',
+    LanguageIme.japaneseFullWidthKatakanaIme: 'japaneseFullWidthKatakanaIme',
+    LanguageIme.japaneseHalfWidthKatakanaIme: 'japaneseHalfWidthKatakanaIme',
+    LanguageIme.japaneseHalfWidthAlphanumericIme:
+        'japaneseHalfWidthAlphanumericIme',
+    LanguageIme.englishIme: 'englishIme',
+  };
+
   @override
-  Future<String?> setLanguageIme(String language, String type) async {
-    final version =
-        await methodChannel.invokeMethod<String>(type, <String, dynamic>{
-      'languageName': language,
-      'methodName': type,
-    });
+  Future<String?> setLanguageIme(LanguageIme languageIme) async {
+    final version = await methodChannel
+        .invokeMethod<String>(languageImeToMethod[languageIme]);
     return version;
   }
 }

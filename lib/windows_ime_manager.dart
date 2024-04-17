@@ -1,7 +1,15 @@
 import 'windows_ime_manager_platform_interface.dart';
 
+enum LanguageIme {
+  japaneseHiraganaIme,
+  japaneseFullWidthKatakanaIme,
+  japaneseHalfWidthKatakanaIme,
+  japaneseHalfWidthAlphanumericIme,
+  englishIme,
+}
+
 class WindowsImeManager {
-  Future<String?> setLanguageIme(String language, String type) {
-    return WindowsImeManagerPlatform.instance.setLanguageIme(language, type);
+  Future<String?> setLanguageIme(LanguageIme languageIme) {
+    return WindowsImeManagerPlatform.instance.setLanguageIme(languageIme);
   }
 }

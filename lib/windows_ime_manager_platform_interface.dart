@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'windows_ime_manager.dart';
 import 'windows_ime_manager_method_channel.dart';
 
 abstract class WindowsImeManagerPlatform extends PlatformInterface {
@@ -23,7 +24,7 @@ abstract class WindowsImeManagerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> setLanguageIme(String language, String type) {
+  Future<String?> setLanguageIme(LanguageIme languageIme) {
     throw UnimplementedError('languageIme() has not been implemented.');
   }
 }

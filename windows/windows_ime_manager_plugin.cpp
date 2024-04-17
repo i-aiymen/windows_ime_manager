@@ -47,9 +47,8 @@ namespace windows_ime_manager
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result)
   {
-    const auto *arguments = std::get_if<flutter::EncodableMap>(method_call.arguments());
-    auto languageName_it = arguments->find(flutter::EncodableValue("languageName"));
-    if (languageName_it != arguments->end() && std::get<std::string>(languageName_it->second) == "Japanese")
+
+    if (method_call.method_name() == "japaneseHiraganaIme" || method_call.method_name() == "japaneseFullWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthAlphanumericIme")
     {
       if (!setupJapaneseIme(method_call.method_name()))
       {
@@ -58,7 +57,7 @@ namespace windows_ime_manager
       }
       result->Success();
     }
-    else if (languageName_it != arguments->end() && std::get<std::string>(languageName_it->second) == "English")
+    else if (method_call.method_name() == "englishIme")
     {
       if (!setupEnglishIme())
       {
