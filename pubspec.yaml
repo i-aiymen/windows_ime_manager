@@ -1,6 +1,6 @@
 name: windows_ime_manager
 description: A Flutter plugin for managing Input Method Editors (IME) on Windows, supporting seamless switching between different languages.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/i-aiymen/windows_ime_manager
 repository: https://github.com/i-aiymen/windows_ime_manager
 

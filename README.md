@@ -27,6 +27,16 @@ Feel free to connect me at: [<img align="center" height="30" src="https://img.sh
 | Japanese  |
 | English   |  
 
+## Types of IME Supported
+
+| IME Types |
+|-----------|
+| Hiragana |
+| English |
+| Half-Width Katakana |
+| Full-Width Katakana |
+| Half-Width Alphanumeric|
+
 
 ## Usage
 
@@ -40,21 +50,21 @@ Create an instance of the `WindowsImeManager` class:
 final _windowsImeManagerPlugin = WindowsImeManager();
 ```
 
-Create a function to set the IME:
+Create a function to set the IME using the enums:
 ```
-Future<void> setLanguageIme(String language, String type) async {
-    try {
-      await _windowsImeManagerPlugin.setLanguageIme(language, type);
-    } on PlatformException {
-      debugPrint('Failed to set language IME.');
-    }
+Future<void> setLanguageIme(LanguageIme languageIme) async {
+  try {
+    await _windowsImeManagerPlugin.setLanguageIme(languageIme);
+  } on PlatformException {
+    debugPrint('Failed to set language IME.');
   }
+}
 ```
 
-Call the function with the desired language and type:
+Call the function with the desired LanguageIme enums:
 ```
-setLanguageIme('Japanese', 'japaneseHalfWidthKatakanaIme');
-setLanguageIme('English', '');
+setLanguageIme(LanguageIme.japaneseHalfWidthKatakanaIme);
+setLanguageIme(LanguageIme.englishIme);
 ```
 
 See the example app for detailed implementation information.
