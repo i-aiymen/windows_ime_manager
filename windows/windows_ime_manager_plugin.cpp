@@ -13,6 +13,7 @@
 #include "ime_setup/japanese/japanese_ime.h"
 #include "ime_setup/english/english_ime.h"
 #include "ime_setup/arabic/arabic_ime.h"
+#include "ime_setup/malayalam/malayalam_ime.h"
 
 // IME files
 #pragma comment(lib, "imm32.lib")
@@ -78,7 +79,7 @@ namespace windows_ime_manager
     }
     else if (method_call.method_name() == "malayalamIme")
     {
-      if (!setupArabicIme())
+      if (!setupMalayalamIme())
       {
         result->Error("IME Setup Failure", "Failed to setup Malayalam IME");
         return;
