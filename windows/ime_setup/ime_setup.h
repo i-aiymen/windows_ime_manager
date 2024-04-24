@@ -5,4 +5,4 @@
 #include <string>
 #include <map>
 
-bool imeSetup(const std::string &methodName, const std::string &languageCode);
+bool imeSetup(const std::string &methodName);

@@ -1,7 +1,18 @@
 #include "ime_setup.h"
 
-bool imeSetup(const std::string &methodName, const std::string &languageCode)
+bool imeSetup(const std::string &methodName)
 {
+
+    std::map<std::string, std::string> languageNames = {
+        {"japaneseHiraganaIme", "Japanese"},
+        {"japaneseFullWidthKatakanaIme", "Japanese"},
+        {"japaneseHalfWidthKatakanaIme", "Japanese"},
+        {"japaneseHalfWidthAlphanumericIme", "Japanese"},
+        {"englishIme", "English"},
+        {"arabicIme", "Arabic"},
+        {"malayalamIme", "Malayalam"},
+        {"hindiIme", "Hindi"}};
+
     std::map<std::string, std::string> languageCodes = {
         {"English", "00000409"},
         {"Japanese", "00000411"},
@@ -9,18 +20,21 @@ bool imeSetup(const std::string &methodName, const std::string &languageCode)
         {"Hindi", "00000439"},
         {"Arabic", "00000401"}};
 
+    std::string languageName = languageNames[methodName];
+    std::string languageCode = languageCodes[languageName];
+
     std::wstring wstr = std::wstring(languageCode.begin(), languageCode.end());
     LPCWSTR lwstr = wstr.c_str();
     HKL languageIME = LoadKeyboardLayout(lwstr, KLF_ACTIVATE);
     if (languageIME == NULL)
     {
-        std::cout << "Failed to load language IME" << std::endl;
+        std::cout << "Failed to load " << languageName << " IME" << std::endl;
         return false;
     }
 
     if (!ActivateKeyboardLayout(languageIME, 0))
     {
-        std::cout << "Failed to activate language IME" << std::endl;
+        std::cout << "Failed to activate " << languageName << " IME" << std::endl;
         return false;
     }
 
