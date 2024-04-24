@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+
 import 'windows_ime_manager_platform_interface.dart';
 
 enum LanguageIme {
@@ -10,6 +14,8 @@ enum LanguageIme {
 
 class WindowsImeManager {
   Future<String?> setLanguageIme(LanguageIme languageIme) {
-    return WindowsImeManagerPlatform.instance.setLanguageIme(languageIme);
+    return !kIsWeb && Platform.isWindows
+        ? WindowsImeManagerPlatform.instance.setLanguageIme(languageIme)
+        : Future.value(null);
   }
 }
