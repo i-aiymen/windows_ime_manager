@@ -15,6 +15,7 @@
 #include "ime_setup/arabic/arabic_ime.h"
 #include "ime_setup/malayalam/malayalam_ime.h"
 #include "ime_setup/hindi/hindi_ime.h"
+#include "ime_setup/ime_setup.h"
 
 // IME files
 #pragma comment(lib, "imm32.lib")
@@ -50,6 +51,15 @@ namespace windows_ime_manager
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result)
   {
+
+    if (!imeSetup(method_call.method_name(), ""))
+      {
+        result->Error("IME Setup Failure", "Failed to setup language IME");
+        return;
+      }
+      result->Success();
+
+    
 
     if (method_call.method_name() == "japaneseHiraganaIme" || method_call.method_name() == "japaneseFullWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthAlphanumericIme")
     {
