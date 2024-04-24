@@ -53,13 +53,11 @@ namespace windows_ime_manager
   {
 
     if (!imeSetup(method_call.method_name(), ""))
-      {
-        result->Error("IME Setup Failure", "Failed to setup language IME");
-        return;
-      }
-      result->Success();
-
-    
+    {
+      result->Error("IME Setup Failure", "Failed to setup language IME");
+      return;
+    }
+    result->Success();
 
     if (method_call.method_name() == "japaneseHiraganaIme" || method_call.method_name() == "japaneseFullWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthKatakanaIme" || method_call.method_name() == "japaneseHalfWidthAlphanumericIme")
     {
