@@ -20,16 +20,6 @@ set(PLUGIN_NAME "windows_ime_manager_plugin")
 list(APPEND PLUGIN_SOURCES
   "windows_ime_manager_plugin.cpp"
   "windows_ime_manager_plugin.h"
-  "ime_setup/japanese/japanese_ime.cpp"
-  "ime_setup/japanese/japanese_ime.h"
-  "ime_setup/english/english_ime.cpp"
-  "ime_setup/english/english_ime.h"
-  "ime_setup/arabic/arabic_ime.cpp"
-  "ime_setup/arabic/arabic_ime.h"
-  "ime_setup/malayalam/malayalam_ime.cpp"
-  "ime_setup/malayalam/malayalam_ime.h"
-  "ime_setup/hindi/hindi_ime.cpp"
-  "ime_setup/hindi/hindi_ime.h"
   "ime_setup/ime_setup.cpp"
   "ime_setup/ime_setup.h"
 )
