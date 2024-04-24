@@ -10,6 +10,7 @@ enum LanguageIme {
   japaneseHalfWidthKatakanaIme,
   japaneseHalfWidthAlphanumericIme,
   englishIme,
+  arabicIme,
 }
 
 class WindowsImeManager {
