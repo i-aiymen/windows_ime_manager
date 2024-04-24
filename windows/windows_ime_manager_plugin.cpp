@@ -14,6 +14,7 @@
 #include "ime_setup/english/english_ime.h"
 #include "ime_setup/arabic/arabic_ime.h"
 #include "ime_setup/malayalam/malayalam_ime.h"
+#include "ime_setup/hindi/hindi_ime.h"
 
 // IME files
 #pragma comment(lib, "imm32.lib")
@@ -82,6 +83,15 @@ namespace windows_ime_manager
       if (!setupMalayalamIme())
       {
         result->Error("IME Setup Failure", "Failed to setup Malayalam IME");
+        return;
+      }
+      result->Success();
+    }
+    else if (method_call.method_name() == "hindiIme")
+    {
+      if (!setupHindiIme())
+      {
+        result->Error("IME Setup Failure", "Failed to setup Hindi IME");
         return;
       }
       result->Success();

@@ -28,6 +28,8 @@ list(APPEND PLUGIN_SOURCES
   "ime_setup/arabic/arabic_ime.h"
   "ime_setup/malayalam/malayalam_ime.cpp"
   "ime_setup/malayalam/malayalam_ime.h"
+  "ime_setup/hindi/hindi_ime.cpp"
+  "ime_setup/hindi/hindi_ime.h"
 )
 
 # Define the plugin library target. Its name must not be changed (see comment
