@@ -12,6 +12,7 @@
 // IME setup files for different languages
 #include "ime_setup/japanese/japanese_ime.h"
 #include "ime_setup/english/english_ime.h"
+#include "ime_setup/arabic/arabic_ime.h"
 
 // IME files
 #pragma comment(lib, "imm32.lib")
@@ -62,6 +63,15 @@ namespace windows_ime_manager
       if (!setupEnglishIme())
       {
         result->Error("IME Setup Failure", "Failed to setup English IME");
+        return;
+      }
+      result->Success();
+    }
+    else if (method_call.method_name() == "arabicIme")
+    {
+      if (!setupArabicIme())
+      {
+        result->Error("IME Setup Failure", "Failed to setup Arabic IME");
         return;
       }
       result->Success();
