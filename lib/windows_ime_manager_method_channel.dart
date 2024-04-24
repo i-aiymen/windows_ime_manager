@@ -19,6 +19,7 @@ class MethodChannelWindowsImeManager extends WindowsImeManagerPlatform {
     LanguageIme.englishIme: 'englishIme',
     LanguageIme.arabicIme: 'arabicIme',
     LanguageIme.malayalamIme: 'malayalamIme',
+    LanguageIme.hindiIme: 'hindiIme',
   };
 
   @override
