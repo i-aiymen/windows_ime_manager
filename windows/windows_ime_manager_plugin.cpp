@@ -76,6 +76,15 @@ namespace windows_ime_manager
       }
       result->Success();
     }
+    else if (method_call.method_name() == "malayalamIme")
+    {
+      if (!setupArabicIme())
+      {
+        result->Error("IME Setup Failure", "Failed to setup Malayalam IME");
+        return;
+      }
+      result->Success();
+    }
     else
     {
       result->Error("Invalid Arguments", "Invalid language name");
