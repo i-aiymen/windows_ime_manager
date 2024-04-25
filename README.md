@@ -25,17 +25,24 @@ Feel free to connect me at: [<img align="center" height="30" src="https://img.sh
 | Languages |
 |-----------|
 | Japanese  |
-| English   |  
+| English   |
+| Arabic    |
+| Malayalam   |
+| Hindi     |
 
 ## Types of IME Supported
 
 | IME Types |
 |-----------|
-| Hiragana |
 | English |
+| Arabic  |
+| Malayalam |
+| Hindi  |
+| Hiragana |
 | Half-Width Katakana |
 | Full-Width Katakana |
 | Half-Width Alphanumeric|
+
 
 
 ## Usage
