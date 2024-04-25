@@ -26,15 +26,16 @@ Feel free to connect me at: [<img align="center" height="30" src="https://img.sh
 |-----------|
 | Japanese  |
 | English   |
-| Arabic    |
+| Arabic (Saudi Arabia)    |
 | Malayalam   |
 | Hindi     |
-| Spanish  |
-| French   |
+| Spanish (Spain)  |
+| French (France)  |
 | Russian  |
 | Chinese  |
-| Dutch   |
-| German   |
+| Dutch (Netherlands)  |
+| German (Germany)  |
+| Italian (Italy) |
 
 
 ## Usage
@@ -83,6 +84,7 @@ See the example app for detailed implementation information.
 | Chinese |
 | Dutch |
 | German |
+| Italian |
 | Hiragana |
 | Half-Width Katakana |
 | Full-Width Katakana |
