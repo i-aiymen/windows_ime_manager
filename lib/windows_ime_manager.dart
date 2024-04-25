@@ -14,6 +14,7 @@ enum LanguageIme {
   malayalamIme,
   hindiIme,
   spanishIme,
+  frenchIme,
 }
 
 class WindowsImeManager {
