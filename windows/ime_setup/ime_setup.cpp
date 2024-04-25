@@ -15,6 +15,7 @@ bool imeSetup(const std::string &methodName)
         {"spanishIme", "Spanish"},
         {"frenchIme", "French"},
         {"russianIme", "Russian"},
+        {"chineseIme", "Chinese"},
     };
 
     std::map<std::string, std::string> languageCodes = {
@@ -26,6 +27,7 @@ bool imeSetup(const std::string &methodName)
         {"Spanish", "0000040A"},
         {"French", "0000040C"},
         {"Russian", "00000419"},
+        {"Chinese", "00000804"},
     };
 
     std::string languageName = languageNames[methodName];
