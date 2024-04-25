@@ -25,6 +25,7 @@ class MethodChannelWindowsImeManager extends WindowsImeManagerPlatform {
     LanguageIme.russianIme: 'russianIme',
     LanguageIme.chineseIme: 'chineseIme',
     LanguageIme.dutchIme: 'dutchIme',
+    LanguageIme.germanIme: 'germanIme',
   };
 
   @override

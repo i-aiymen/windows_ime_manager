@@ -18,6 +18,7 @@ enum LanguageIme {
   russianIme,
   chineseIme,
   dutchIme,
+  germanIme,
 }
 
 class WindowsImeManager {
