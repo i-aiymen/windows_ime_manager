@@ -29,20 +29,12 @@ Feel free to connect me at: [<img align="center" height="30" src="https://img.sh
 | Arabic    |
 | Malayalam   |
 | Hindi     |
-
-## Types of IME Supported
-
-| IME Types |
-|-----------|
-| English |
-| Arabic  |
-| Malayalam |
-| Hindi  |
-| Hiragana |
-| Half-Width Katakana |
-| Full-Width Katakana |
-| Half-Width Alphanumeric|
-
+| Spanish  |
+| French   |
+| Russian  |
+| Chinese  |
+| Dutch   |
+| German   |
 
 
 ## Usage
@@ -75,6 +67,26 @@ setLanguageIme(LanguageIme.englishIme);
 ```
 
 See the example app for detailed implementation information.
+
+
+## Types of IME Supported
+
+| IME Types |
+|-----------|
+| English |
+| Arabic  |
+| Malayalam |
+| Hindi  |
+| Spanish |
+| French |
+| Russian |
+| Chinese |
+| Dutch |
+| German |
+| Hiragana |
+| Half-Width Katakana |
+| Full-Width Katakana |
+| Half-Width Alphanumeric|
 
 
 
